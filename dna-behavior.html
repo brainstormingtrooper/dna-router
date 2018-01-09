@@ -296,9 +296,7 @@
 			this.dispatchEvent(new CustomEvent(event, {detail: data}));
 		}
 		_load_page(e){
-			var ell = this.element.replace(/-(.)/g, function($1) { return $1.toUpperCase(); }).replace(/-/g, '');
-
-			var file = ell+'.html';
+			var file = this.element+'.html';
 			var template = Config.template + "/" + (this.template || "")
 			template = URLParser.formatUrl(template) + '/'
 			template +=file;
