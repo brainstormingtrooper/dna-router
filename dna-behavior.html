@@ -306,12 +306,19 @@
 				self._loadElement(this.element)
 
 			} else{
-				Polymer.importHref(template ,function(){
-					self._loadElement(self.element)
-				});
-			}
-			
-			self._loadElement(self.element)
+				let link = (document.head.querySelector('link[href="' + template + '"][import-href]'));
+
+				if (!link) {
+			      link = (document.createElement('link'));
+			      link.rel = 'import';
+			      link.href = template;
+			      link.setAttribute('import-href', '');
+
+			      document.head.appendChild(link);
+			    }
+
+				self._loadElement(self.element)
+			}			
 			
 		}
 		_loadElement(el){
