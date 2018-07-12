@@ -297,14 +297,12 @@
 		}
 		_load_page(e){
 			var file = this.element+'.html';
-			var template = Config.template + "/" + (this.template || "")
-			template = URLParser.formatUrl(template) + '/'
+			var template = Config.template + (this.template ? "/" + this.template : "") + "/"
 			template +=file;
 
 			var self = this
 			if(Config.manualLoad){
 				self._loadElement(this.element)
-
 			} else{
 				let link = (document.head.querySelector('link[href="' + template + '"][import-href]'));
 
@@ -313,7 +311,6 @@
 			      link.rel = 'import';
 			      link.href = template;
 			      link.setAttribute('import-href', '');
-
 			      document.head.appendChild(link);
 			    }
 
@@ -328,7 +325,6 @@
 			this.innerHTML = "";
 			this.appendChild(el);
 			this.classList.add('active')
-
 		}
 		_leave_page(e){
 			this.classList.remove('active')
